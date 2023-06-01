@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "MonstarCalculator",
+    "name": "Monstar Calculator",
     "slug": "MonstarCalculator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon-monstar.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-monstar.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,16 +15,24 @@
       "**/*"
     ],
     "ios": {
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon-monstar.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.monstarsolutions.MonstarCalculator"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d77583e9-7358-4bce-a994-aa742235918d"
+      }
     }
   }
 }

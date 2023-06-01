@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import Buttons from "./components/Buttons";
+import { Appearance, useColorScheme } from "react-native";
 
 import COLOURS from "./config/colours";
 
@@ -17,12 +18,63 @@ export default function App() {
   const [operation, setOperation] = useState("");
   const [result, setResult] = useState(null);
 
+  let colorScheme = useColorScheme();
+
+  if (colorScheme === "dark") {
+    // render some dark thing
+  } else {
+    // render some light thing
+  }
+
+  const LIGHT_THEME = {
+    container: {
+      flex: 1,
+      backgroundColor: "#FAF9F6",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    keypad: {
+      height: "60%",
+      flex: 0.95,
+    },
+    row: {
+      flexDirection: "row",
+      justifyContent: "space-evenly",
+      width: "100%",
+    },
+    screen: {
+      flex: 0.45,
+      width: "100%",
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+    },
+    firstNumber: {
+      color: "#3B3B3B",
+      fontSize: 90,
+      fontWeight: "200",
+      paddingRight: 10,
+    },
+    topDisplay: {
+      width: "100%",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-end",
+    },
+    operation: {
+      color: "#3B3B3B",
+      fontSize: 42,
+    },
+    secondNumber: {
+      color: "#3B3B3B",
+      fontSize: 42,
+      fontWeight: "300",
+    },
+  };
+
   const handleNumberPress = (value) => {
-    if (value !== "" && value !== "0") {
+    if (value !== "" && value !== "0" && !firstNumber && result) {
+      clear();
       setFirstNumber(value);
-    }
-    if (result) {
-      setResult(null);
       return;
     }
 
@@ -171,6 +223,7 @@ export default function App() {
     if (result && firstNumber && secondNumber && operation) {
       setFirstNumber(result);
     }
+
     switch (operation) {
       case "+":
         clear();
@@ -178,14 +231,12 @@ export default function App() {
         break;
       case "-":
         clear();
-
         setResult(parseFloat(secondNumber) - parseFloat(firstNumber));
         break;
       case "*":
         clear();
-        setResult(parseFloat(secondNumber) * parseFloat(firstNumber));
+        setResult(parseFloat(firstNumber) * parseFloat(secondNumber));
         break;
-
       case "/":
         clear();
         if (firstNumber === "0") {
@@ -196,7 +247,6 @@ export default function App() {
         break;
       default:
         clear();
-        setResult(0);
         break;
     }
   };
